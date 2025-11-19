@@ -2,6 +2,25 @@
 
 Simple yet powerful PDF and Image extractor with OCR capabilities, specifically designed for Indonesian documents like KTP and SIM.
 
+## 🌐 Web Interface Available!
+
+This tool now includes a **web interface** for easy file upload and processing!
+
+```bash
+python app.py
+```
+
+Then open: **http://localhost:5000**
+
+Features:
+- 📤 Drag & drop file upload
+- 👁️ File preview
+- 🎯 Auto-detect document type (KTP/SIM)
+- 📊 Beautiful results display
+- 💾 Download extracted data
+
+See [WEB_APP_README.md](WEB_APP_README.md) for web interface documentation.
+
 ## Features
 
 ### PDF Extractor

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF & Image Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 PDF & Image Extractor</h1>
+            <p class="subtitle">Extract text from PDF and images with OCR. Support for KTP & SIM documents.</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-box" id="uploadBox">
+                    <div class="upload-icon">📁</div>
+                    <h2>Upload File</h2>
+                    <p>Drag and drop or click to select</p>
+                    <p class="file-types">Supported: PDF, JPG, PNG, TIFF, BMP</p>
+                    <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png,.tiff,.bmp" hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                        Choose File
+                    </button>
+                </div>
+
+                <!-- File Preview -->
+                <div class="file-preview" id="filePreview" style="display: none;">
+                    <div class="preview-header">
+                        <h3>Selected File</h3>
+                        <button class="btn btn-small" onclick="resetForm()">Change File</button>
+                    </div>
+                    <div class="preview-content">
+                        <div class="preview-image" id="previewImage"></div>
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
+                </div>
+
+                <!-- Processing Options -->
+                <div class="options-section" id="optionsSection" style="display: none;">
+                    <h3>Processing Options</h3>
+
+                    <div class="option-group">
+                        <label for="documentType">Document Type:</label>
+                        <select id="documentType" class="form-control">
+                            <option value="auto">Auto Detect</option>
+                            <option value="ktp">KTP (Indonesian ID Card)</option>
+                            <option value="sim">SIM (Driver's License)</option>
+                            <option value="general">General Image/PDF</option>
+                        </select>
+                    </div>
+
+                    <div class="option-group" id="ocrEngineGroup">
+                        <label for="ocrEngine">OCR Engine:</label>
+                        <select id="ocrEngine" class="form-control">
+                            <option value="tesseract">Tesseract (Fast)</option>
+                            <option value="easyocr">EasyOCR (More Accurate for Indonesian)</option>
+                        </select>
+                        <small class="help-text">EasyOCR is recommended for Indonesian documents</small>
+                    </div>
+
+                    <button class="btn btn-success btn-large" onclick="processFile()">
+                        <span id="processButtonText">Process File</span>
+                        <span id="processSpinner" class="spinner" style="display: none;"></span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Extraction Results</h2>
+                    <button class="btn btn-small" onclick="resetForm()">Process Another File</button>
+                </div>
+
+                <div class="results-content">
+                    <!-- Document Info -->
+                    <div class="result-card" id="documentInfo">
+                        <h3>Document Information</h3>
+                        <div id="documentInfoContent"></div>
+                    </div>
+
+                    <!-- KTP/SIM Data -->
+                    <div class="result-card" id="structuredData" style="display: none;">
+                        <h3>Extracted Data</h3>
+                        <div id="structuredDataContent"></div>
+                    </div>
+
+                    <!-- Extracted Text -->
+                    <div class="result-card">
+                        <h3>Extracted Text</h3>
+                        <div class="text-preview" id="extractedText"></div>
+                        <button class="btn btn-small" onclick="copyText()">Copy Text</button>
+                    </div>
+
+                    <!-- Download Options -->
+                    <div class="result-card">
+                        <h3>Download Results</h3>
+                        <div class="download-buttons" id="downloadButtons"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <h3>Error</h3>
+                <p id="errorText"></p>
+                <button class="btn btn-small" onclick="hideError()">Close</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for document extraction</p>
+            <p><small>Supports Indonesian documents (KTP, SIM) and general PDF/Image text extraction</small></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

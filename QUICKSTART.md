@@ -2,6 +2,22 @@
 
 Panduan cepat untuk memulai menggunakan PDF & Image Extractor.
 
+## 🚀 Cara Tercepat: Web Interface
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Jalankan web app
+python app.py
+
+# Buka browser: http://localhost:5000
+```
+
+Upload file, pilih type, dan extract! ✨
+
+Lihat [WEB_APP_README.md](WEB_APP_README.md) untuk detail lengkap.
+
 ## Instalasi Cepat
 
 ### 1. Install Dependencies
